@@ -14,6 +14,7 @@ typedef struct link_list_struct_info link_list;
 link_list* newLinkList();
 void releaseLinkList(link_list** list);
 void addElementInLinkList(link_list* list, void* data);
-void deleteElementInLinkList(void* data);
+void deleteElementInLinkList(link_list* listContainer, void* data);
+void deleteElementAtIndexInLinkList(int index);
 
 #endif
