@@ -12,7 +12,7 @@
 typedef struct link_list_struct_info link_list;
 
 link_list* newLinkList();
-void deallocLinkList(link_list** list);
+void releaseLinkList(link_list** list);
 void addElementInLinkList(link_list* list, void* data);
 
 #endif

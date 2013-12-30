@@ -39,15 +39,35 @@ link_list* newLinkList(){
     return newList;
 }
 
+void releaseLinkList(link_list** ptrToList){
+    list_struct_info* list = (*ptrToList)->link_list;
+    list_struct_info* tmpList = NULL;
+    while (list != NULL) {
+        tmpList = list->next;
+        free(list);
+        list = tmpList;
+    }
+    *ptrToList = NULL;
+}
+
 //add the element to the list
-void addElementInLinkList(link_list* list, void* data){
-    
-    link_list *list_element = (link_list*) calloc(sizeof(link_list), 1);
-    switch (list->list_element_count) {
+void addElementInLinkList(link_list* listContainer, void* data){
+    list_struct_info *list_element = (list_struct_info*) calloc(sizeof(list_struct_info), 1);
+    list_struct_info* list = listContainer->link_list;
+    list_element->data = data;
+    list_element->next = NULL;
+    switch (listContainer->list_element_count) {
         case 0:{
+            listContainer->link_list = list_element;
             break;
         }
-        default:
+        default:{
+             while (list->next != NULL) {
+                 list = list->next;
+             }
+            list->next = list_element;
             break;
+        }
     }
+    listContainer->list_element_count++;
 }
