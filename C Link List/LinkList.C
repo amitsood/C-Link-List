@@ -71,3 +71,11 @@ void addElementInLinkList(link_list* listContainer, void* data){
     }
     listContainer->list_element_count++;
 }
+
+//Delete a element in a link list
+void deleteElementInLinkList(link_list* listContainer, void* data){
+    list_struct_info* list = listContainer->link_list;
+    while (list->next != NULL) {
+        list = list->next;
+    }
+}
