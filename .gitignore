@@ -12,3 +12,9 @@ C Link List.xcodeproj/xcuserdata/saurav.nagpal.xcuserdatad/xcschemes/xcschememan
 C Link List.xcodeproj/project.xcworkspace/xcshareddata/C Link List.xccheckout
 
 C Link List.xcodeproj/xcuserdata/saurav.nagpal.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+*.xcuserstate
+
+*.xcscheme
+
+*.plist
