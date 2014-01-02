@@ -58,7 +58,7 @@ long getElementCount(link_list* list);
  |
  |  Parameters:
  |	link_list (IN)   -- link list.
- |  index     (IN)   -- index of element.
+ |  index     (IN)   -- index of element(start from 1).
  |  value     (OUT)  -- Pass the value back to calling method.
  |
  |  Returns:  None.
