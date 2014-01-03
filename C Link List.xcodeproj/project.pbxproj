@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		03AC8DA0186964EF006C50BE /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 03AC8D9F186964EF006C50BE /* main.c */; };
 		03AC8DA2186964EF006C50BE /* C_Link_List.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03AC8DA1186964EF006C50BE /* C_Link_List.1 */; };
-		03AC8DAA18696533006C50BE /* LinkList.C in Sources */ = {isa = PBXBuildFile; fileRef = 03AC8DA918696533006C50BE /* LinkList.C */; };
+		C1F01E9F1877308200820725 /* LinkList.c in Sources */ = {isa = PBXBuildFile; fileRef = C1F01E9E1877308200820725 /* LinkList.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,7 +30,7 @@
 		03AC8D9F186964EF006C50BE /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		03AC8DA1186964EF006C50BE /* C_Link_List.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = C_Link_List.1; sourceTree = "<group>"; };
 		03AC8DA81869650A006C50BE /* LinkList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkList.h; sourceTree = "<group>"; };
-		03AC8DA918696533006C50BE /* LinkList.C */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkList.C; sourceTree = "<group>"; };
+		C1F01E9E1877308200820725 /* LinkList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkList.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +63,10 @@
 		03AC8D9E186964EF006C50BE /* C Link List */ = {
 			isa = PBXGroup;
 			children = (
+				C1F01E9E1877308200820725 /* LinkList.c */,
 				03AC8D9F186964EF006C50BE /* main.c */,
 				03AC8DA1186964EF006C50BE /* C_Link_List.1 */,
 				03AC8DA81869650A006C50BE /* LinkList.h */,
-				03AC8DA918696533006C50BE /* LinkList.C */,
 			);
 			path = "C Link List";
 			sourceTree = "<group>";
@@ -123,7 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03AC8DA0186964EF006C50BE /* main.c in Sources */,
-				03AC8DAA18696533006C50BE /* LinkList.C in Sources */,
+				C1F01E9F1877308200820725 /* LinkList.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +231,7 @@
 				03AC8DA7186964EF006C50BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

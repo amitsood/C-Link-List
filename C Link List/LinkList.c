@@ -9,6 +9,8 @@
 #include "LinkList.h"
 #include "string.h"
 #include <stdlib.h>
+#include <stdio.h>
+
 
 /*************************
  *Variable Declaration
@@ -24,7 +26,7 @@ struct list_struct_info{
 };
 
 struct link_list_struct_info{
-    list_struct_info*       link_list;
+    list_struct*            link_list;
     long                    list_element_count;
     link_list_type          list_type;
 };
@@ -33,9 +35,9 @@ struct link_list_struct_info{
  *Function Declaration
  ************************/
 list_struct* newListElement(link_list_type type,void* data);
-void setValueFromlist(list_struct_info* list, link_list_type type, void* value);
-void releaseListElement(list_struct_info* list);
-bool isListElementEqualToValue(list_struct_info* list, link_list_type type, void* value);
+void setValueFromlist(list_struct* list, link_list_type type, void* value);
+void releaseListElement(list_struct** ptrToElement);
+short isListElementEqualToValue(list_struct* list, link_list_type type, void* value);
 
 /*************************
  *Function Defination
@@ -55,8 +57,8 @@ link_list* newLinkList(link_list_type type){
 
 //release the link list memory
 void releaseLinkList(link_list** ptrToList){
-    list_struct_info* list = (*ptrToList)->link_list;
-    list_struct_info* tmpList = NULL;
+    list_struct* list = (*ptrToList)->link_list;
+    list_struct* tmpList = NULL;
     while (list != NULL) {
         tmpList = list->next;
         free(list->data);
@@ -72,7 +74,7 @@ long getElementCount(link_list* list){
 }
 //Return the element value at given index.
 void getElementAtIndex(link_list* listContainer, long index, void* value){
-    list_struct_info* list = listContainer->link_list;
+    list_struct* list = listContainer->link_list;
     long currentElement = 0;
     while (list->next != NULL) {
         currentElement++;
@@ -107,9 +109,9 @@ void addElementInLinkList(link_list* listContainer, void* data){
 
 //Delete a element in a link list
 void deleteElementInLinkList(link_list* listContainer, void* data){
-    list_struct_info* list = listContainer->link_list;
+    list_struct* list = listContainer->link_list;
     link_list_type type = listContainer->list_type;
-    list_struct_info* tmp = NULL;
+    list_struct* tmp = NULL;
     while (list != NULL) {
         if(isListElementEqualToValue(list, type, data)){
             if(tmp == NULL){
@@ -121,8 +123,30 @@ void deleteElementInLinkList(link_list* listContainer, void* data){
                     tmp->next = list->next;
                 }
             }
-            releaseListElement(list);
+            releaseListElement(&list);
             break;
+        }
+        tmp = list;
+        list = list->next;
+    }
+}
+
+void deleteElementAtIndexInLinkList(link_list* listContainer, long index){
+    list_struct* list = listContainer->link_list;
+    long currentElement = 0;
+    list_struct* tmp = NULL;
+    while (list != NULL) {
+        if(index == currentElement){
+            if(tmp == NULL){
+                listContainer->link_list = list->next;
+            }else{
+                if(list->next == NULL){
+                    tmp->next = NULL;
+                }else{
+                    tmp->next = list->next;
+                }
+            }
+            releaseListElement(&list);
         }
         tmp = list;
         list = list->next;
@@ -168,7 +192,7 @@ list_struct* newListElement(link_list_type type,void* data){
     return list_element;
 }
 
-void setValueFromlist(list_struct_info* list, link_list_type type, void* value){
+void setValueFromlist(list_struct* list, link_list_type type, void* value){
     switch (type) {
         case link_list_int:{
             *((int*)(value)) = *(int*)list->data;
@@ -192,29 +216,29 @@ void setValueFromlist(list_struct_info* list, link_list_type type, void* value){
     }
 }
 
-bool isListElementEqualToValue(list_struct_info* list, link_list_type type, void* value){
-    bool isEqual = false;
+short isListElementEqualToValue(list_struct* list, link_list_type type, void* value){
+    short isEqual = 0;
     switch (type) {
         case link_list_int:{
             if(*((int*)(value)) == *(int*)list->data){
-                isEqual = true;
+                isEqual = 1;
             }
             break;
         }
         case link_list_double:{
             if(*((double*)(value)) == *(double*)list->data){
-                isEqual = true;
+                isEqual = 1;
             }
             break;
         }
         case link_list_float:{
             if(*((float*)(value)) == *(float*)list->data){
-                isEqual = true;
+                isEqual = 1;
             }
             break;
         }
         case link_list_string:{
-            isEqual = strcmp(((char*)(value)), (char*)list->data) == 0 ? true : false;
+            isEqual = strcmp(((char*)(value)), (char*)list->data) == 0 ? 1 : 0;
             break;
         }
         case link_list_void:{
@@ -224,8 +248,8 @@ bool isListElementEqualToValue(list_struct_info* list, link_list_type type, void
     return isEqual;
 }
 
-void releaseListElement(list_struct_info** ptrToElement){
-    list_struct_info* element = *ptrToElement;
+void releaseListElement(list_struct** ptrToElement){
+    list_struct* element = *ptrToElement;
     free(element->data);
     free(element);
     *ptrToElement = NULL;
