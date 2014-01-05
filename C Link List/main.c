@@ -12,24 +12,30 @@
 void createFloatLinkList(link_list* list);
 void createIntegerLinkList(link_list* list);
 void createDoubleLinkList(link_list* list);
+void createStringLinkList(link_list* list);
 
 int main(int argc, const char * argv[])
 {
     link_list* int_list = newLinkList(link_list_int);
     link_list* float_list = newLinkList(link_list_float);
     link_list* double_list = newLinkList(link_list_double);
+    link_list* string_list = newLinkList(link_list_string);
     int elementValue_int = 0;
     float elementValue_float = 0.0;
     double elementValue_double = 0.000;
+    char* elementValue_String = NULL;
     createIntegerLinkList(int_list);
     createFloatLinkList(float_list);
     createDoubleLinkList(double_list);
+    createStringLinkList(string_list);
     getElementAtIndex(int_list, 2, &elementValue_int);
     getElementAtIndex(float_list, 3, &elementValue_float);
     getElementAtIndex(double_list, 4, &elementValue_double);
+    getElementAtIndex(string_list, 4, &elementValue_String);
     printf("intValue:%d\n",elementValue_int);
     printf("floatValue:%f\n",elementValue_float);
-    printf("floatValue:%f\n",elementValue_double);
+    printf("doubleValue:%f\n",elementValue_double);
+    printf("stringValue:%s\n",elementValue_String);
     return 0;
 }
 
@@ -48,8 +54,8 @@ void createIntegerLinkList(link_list* list){
 void createFloatLinkList(link_list* list){
     float value = 5.0;
     float increment = 9.0;
-    float loopCount = 0;
-    float loopLimit = 5;
+    int loopCount = 0;
+    int loopLimit = 5;
     while(loopCount < loopLimit){
         addElementInLinkList(list, &value);
         value += increment;
@@ -60,11 +66,27 @@ void createFloatLinkList(link_list* list){
 void createDoubleLinkList(link_list* list){
     double value = 5.0000;
     double increment = 9.00000;
-    float loopCount = 0;
-    float loopLimit = 5;
+    int loopCount = 0;
+    int loopLimit = 5;
     while(loopCount < loopLimit){
         addElementInLinkList(list, &value);
         value += increment;
+        loopCount++;
+    }
+}
+
+void createStringLinkList(link_list* list){
+    char string_link[5][10] ={
+      "Sample",
+        "link",
+        "list",
+        "Array",
+        "Char"
+    };
+    int loopCount = 0;
+    int loopLimit = 5;
+    while(loopCount < loopLimit){
+        addElementInLinkList(list, &string_link[loopCount]);
         loopCount++;
     }
 }

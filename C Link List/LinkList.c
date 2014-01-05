@@ -207,7 +207,7 @@ void setValueFromlist(list_struct* list, link_list_type type, void* value){
             break;
         }
         case link_list_string:{
-            strcpy((char*)(value), (char*)list->data);
+            *((char**)value) =  (char*)list->data;
             break;
         }
         case link_list_void:{
