@@ -28,6 +28,22 @@ int main(int argc, const char * argv[])
     createFloatLinkList(float_list);
     createDoubleLinkList(double_list);
     createStringLinkList(string_list);
+    
+    getElementAtIndex(int_list, 2, &elementValue_int);
+    getElementAtIndex(float_list, 3, &elementValue_float);
+    getElementAtIndex(double_list, 4, &elementValue_double);
+    getElementAtIndex(string_list, 4, &elementValue_String);
+    
+    printf("intValue:%d\n",elementValue_int);
+    printf("floatValue:%f\n",elementValue_float);
+    printf("doubleValue:%f\n",elementValue_double);
+    printf("stringValue:%s\n",elementValue_String);
+    
+    deleteElementAtIndexInLinkList(int_list, 2);
+    deleteElementAtIndexInLinkList(float_list, 3);
+    deleteElementAtIndexInLinkList(double_list, 4);
+    deleteElementAtIndexInLinkList(string_list, 4);
+    
     getElementAtIndex(int_list, 2, &elementValue_int);
     getElementAtIndex(float_list, 3, &elementValue_float);
     getElementAtIndex(double_list, 4, &elementValue_double);
@@ -36,6 +52,12 @@ int main(int argc, const char * argv[])
     printf("floatValue:%f\n",elementValue_float);
     printf("doubleValue:%f\n",elementValue_double);
     printf("stringValue:%s\n",elementValue_String);
+    
+    releaseLinkList(&int_list);
+    releaseLinkList(&float_list);
+    releaseLinkList(&double_list);
+    releaseLinkList(&string_list);
+    
     return 0;
 }
 

@@ -75,15 +75,14 @@ long getElementCount(link_list* list){
 //Return the element value at given index.
 void getElementAtIndex(link_list* listContainer, long index, void* value){
     list_struct* list = listContainer->link_list;
-    long currentElement = 0;
-    while (list->next != NULL) {
-        currentElement++;
+    long currentElement = 1;
+    while (list != NULL) {
         if(currentElement == index){
             setValueFromlist(list, listContainer->list_type,value);
             break;
         }
         list = list->next;
-        
+        currentElement++;
     }
 }
 
@@ -133,7 +132,9 @@ void deleteElementInLinkList(link_list* listContainer, void* data){
 
 void deleteElementAtIndexInLinkList(link_list* listContainer, long index){
     list_struct* list = listContainer->link_list;
-    long currentElement = 0;
+    if(index > listContainer->list_element_count)
+        return;
+    long currentElement = 1;
     list_struct* tmp = NULL;
     while (list != NULL) {
         if(index == currentElement){
@@ -147,9 +148,11 @@ void deleteElementAtIndexInLinkList(link_list* listContainer, long index){
                 }
             }
             releaseListElement(&list);
+            break;
         }
         tmp = list;
         list = list->next;
+        currentElement++;
     }
 }
 
